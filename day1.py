@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/local/bin/python3
 
 import math
 
@@ -15,7 +15,8 @@ def masstofuel(mass):
     return fuel
 
 
-for mass in masses:
-    result += masstofuel(mass)
+if __name__ == "__main__":
+    for mass in masses:
+        result += masstofuel(mass)
 
-print(result)
+    print(result)
