@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python3
 
 pathTranslations = [
     [
@@ -43,19 +43,20 @@ def intersects(list1, list2):
 def distance(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
+if __name__ == "__main__":
+    path1 = compute_path([0, 0], pathTranslations[0])
+    path2 = compute_path([0, 0], pathTranslations[1])
 
-path1 = compute_path([0, 0], pathTranslations[0])
-path2 = compute_path([0, 0], pathTranslations[1])
+    intersects = intersects(path1, path2)
+    distances = [distance(x, [0, 0]) for x in intersects]
 
-intersects = intersects(path1, path2)
-distances = [distance(x, [0, 0]) for x in intersects]
+    # Part 1
+    print("Point with shortest distance is {} with a distance of {}.").format(
+        intersects[distances.index(min(distances))], min(distances))
 
-# Part 1
-print("Point with shortest distance is {} with a distance of {}.").format(
-    intersects[distances.index(min(distances))], min(distances))
+    wire_lengths = [path1.index(x) + path2.index(x) for x in intersects]
 
-wire_lengths = [path1.index(x) + path2.index(x) for x in intersects]
+    # Part 2
+    print("Point with shortest total wire distance is {} with a distance of {}.").format(
+        intersects[wire_lengths.index(min(wire_lengths))], min(wire_lengths))
 
-# Part 2
-print("Point with shortest total wire distance is {} with a distance of {}.").format(
-    intersects[wire_lengths.index(min(wire_lengths))], min(wire_lengths))
